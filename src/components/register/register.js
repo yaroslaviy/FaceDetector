@@ -4,13 +4,13 @@ const Register = ({onRouteChange}) => {
     return (
         <article className="mw6 center br3 pa3 pa4-ns mv4 shadow-5 ba b--black-10 w-50-m w-100 w-25-l">
             <main className="pa4 black-80">
-                <form className="measure">
+                <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f2 fw6 ph0 mh0">Register</legend>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
                             <input
-                                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                className="pa2 input-reset ba bg-transparent w-100"
                                 type="text"
                                 name="name"
                                 id="name"/>
@@ -18,7 +18,7 @@ const Register = ({onRouteChange}) => {
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                             <input
-                                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                className="pa2 input-reset ba bg-transparent w-100"
                                 type="email"
                                 name="email-address"
                                 id="email-address"/>
@@ -26,7 +26,7 @@ const Register = ({onRouteChange}) => {
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                             <input
-                                className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                                className="b pa2 input-reset ba bg-transparent w-100"
                                 type="password"
                                 name="password"
                                 id="password"/>
@@ -40,7 +40,7 @@ const Register = ({onRouteChange}) => {
                             type="submit"
                             value="Register"/>
                     </div>
-                </form>
+                </div>
             </main>
         </article>
     );
