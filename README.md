@@ -1,8 +1,8 @@
-### FACEDETECTOR
-FaceDetector is a website that accepts your picture and will detect human faces on it! It is being done by using Clarifai API
-It also ranks users depending on amount of pictures they submitted for face detection.
+### FaceDetector
+FaceDetector is a website that accepts your picture and will detect human faces on it! It is being done by using Clarifai API and 
+FaceDetector also ranks users depending on amount of pictures they submitted for face detection.
 
-### DEPENDENCIES
+### Dependencies
 * react
 * react-particles-js
 * clarifai
