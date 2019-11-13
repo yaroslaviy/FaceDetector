@@ -32,24 +32,26 @@ const particleparams = {
     }
 };
 
+const initialstate = {
+    input: '',
+    imageURL: '',
+    box: {},
+    route: 'signin',
+    user: {
+        id:'',
+        name:'',
+        email:'',
+        password:'',
+        entries: 0,
+        joined: new Date()
+    },
+    isSignedIn: false
+};
+
 class App extends Component {
     constructor() {
         super();
-        this.state = {
-            input: '',
-            imageURL: '',
-            box: {},
-            route: 'signin',
-            user: {
-                id:'',
-                name:'',
-                email:'',
-                password:'',
-                entries: 0,
-                joined: new Date()
-            },
-            isSignedIn: false
-        }
+        this.state = initialstate
     }
 
     loadUser = (data) => {
@@ -101,14 +103,16 @@ class App extends Component {
                 .then(count => {
                     this.setState(Object.assign(this.state.user, { entries: count }))
                 })
+                .catch(console.log)
                 this.displayFaceBox(this.calculateFaceLocation(response)).catch(err => console.log(err))
-            });
+            })
+            .catch(console.log);
 
     }
 
     onRouteChange = (route) =>{
         if (route === 'signout'){
-            this.setState({isSignedIn: false})
+            this.setState(initialstate)
         } else if(route === 'home'){
             this.setState({isSignedIn: true})
         }
