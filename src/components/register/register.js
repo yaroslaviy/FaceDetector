@@ -9,6 +9,15 @@ class Register extends React.Component {
             name: ''
         }
     }
+    testPassword = () => {
+        if(this.state.registerPassword === undefined)
+            return false
+        return this.state.registerPassword.length>=6;
+    }
+    testEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     onEmailChange = (event) => {
         this.setState({registerEmail: event.target.value})
@@ -22,12 +31,14 @@ class Register extends React.Component {
     }
 
     onRegister = () => {
+        const {registerEmail, registerPassword, name} = this.state;
+        if(this.testEmail(registerEmail) && this.testPassword() && name) {    
         fetch('http://localhost:3000/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-                body: JSON.stringify({email: this.state.registerEmail, password: this.state.registerPassword, name: this.state.name})
+                body: JSON.stringify({email: registerEmail, password: registerPassword, name: name})
             })
             .then(response => response.json())
             .then(user => {
@@ -41,15 +52,16 @@ class Register extends React.Component {
                 }
 
             })
-
+        }
     }
     render() {
         return (
+            
             <article
                 className="mw6 center br3 pa3 pa4-ns mv4 shadow-5 ba b--black-10 w-50-m w-100 w-25-l">
                 <main className="pa4 black-80">
                     <div className="measure">
-                        <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
+                        <fieldset id="sign_up" className="ba b--transparent center ph0 mh0">
                             <legend className="f2 fw6 ph0 mh0">Register</legend>
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
@@ -75,8 +87,12 @@ class Register extends React.Component {
                                     name="password"
                                     id="password"/>
                             </div>
-
                         </fieldset>
+                        <div className='mb3 center'>
+                        { !this.testPassword() ? 
+                            <span>Password is too short</span> : <span></span>
+                            }
+                        </div>
                         <div className="">
                             <input
                                 onClick={() => this.onRegister()}
@@ -85,6 +101,7 @@ class Register extends React.Component {
                                 value="Register"/>
                         </div>
                     </div>
+                    
                 </main>
             </article>
         );
