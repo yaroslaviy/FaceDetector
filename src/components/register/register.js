@@ -40,15 +40,17 @@ class Register extends React.Component {
             },
                 body: JSON.stringify({email: registerEmail, password: registerPassword, name: name})
             })
-            .then(response => response.json())
+            .then(response => response.json() )
             .then(user => {
-                if (user) {
+                if (user.id) {
                     this
                         .props
                         .loadUser(user);
                     this
                         .props
                         .onRouteChange('home');
+                } else {
+                    document.querySelector('#error').innerHTML=user
                 }
 
             })
@@ -88,7 +90,7 @@ class Register extends React.Component {
                                     id="password"/>
                             </div>
                         </fieldset>
-                        <div className='mb3 center'>
+                        <div className='mb3 center' id='error'>
                         { !this.testPassword() ? 
                             <span>Password is too short</span> : <span></span>
                             }
