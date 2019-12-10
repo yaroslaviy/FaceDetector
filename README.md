@@ -3,11 +3,12 @@ FaceDetector is a website that accepts your picture and will detect human faces 
 FaceDetector also ranks users depending on amount of pictures they submitted for face detection.
 
 ### Dependencies
-* react
-* react-particles-js
-* clarifai
-* react-tilt
-* tachyons
+* `react`
+* `react-particles-js`
+* `clarifai`
+* `react-tilt`
+* `tachyons`
+* `joi`
 
 ### `npm start`
 
