@@ -128,20 +128,27 @@ class App extends Component {
         return (
             <div className="App">
                 <Particles className='particles' params={particleparams}/>
-                <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn}/> {route === 'home'
-                    ? <div>
+                <Navigation onRouteChange={this.onRouteChange} isSignedIn={isSignedIn}/> 
+                {(() => {
+                    switch(route) {
+                    case "home": return(<div>
                             <Logo/>
                             <Rank name={this.state.user.name} entries={this.state.user.entries}/>
                             <ImageLinkForm
                                 onInputChange={this.onInputChange}
                                 onSubmitPicture={this.onSubmitPicture}/>
                             <FaceRecognition imageURL={imageURL} box={box}/>
-
-                        </div>
-                    : ((route === 'signin' || route === 'signout')
-                        ? <SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>
-                        : <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>)
-}
+                        </div>);
+                    case 'signin':
+                    case 'signout':
+                        return(<SignIn onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>);
+                    case 'register': 
+                        return(<Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>);
+                    default:
+                        return null;
+                    }
+                }
+                )()}
             </div>
         );
     }
