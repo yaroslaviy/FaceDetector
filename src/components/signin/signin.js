@@ -31,6 +31,8 @@ class SignIn extends React.Component {
             if(user.id){
               this.props.loadUser(user);
               this.props.onRouteChange('home');
+            } else {
+                document.querySelector('#error').innerHTML = user
             }
           })
         
@@ -65,7 +67,8 @@ class SignIn extends React.Component {
                             </div>
 
                         </fieldset>
-                        <div className="">
+                        <div className='mb3 center' id='error'></div>
+                        <div>
                             <input
                                 onClick={() => this.onSignIn()}
                                 className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
